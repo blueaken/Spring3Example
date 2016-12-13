@@ -49,6 +49,14 @@
       <version>1.6.11</version>
     </dependency>
 
+    <!-- Spring Test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- Mockito test framework -->
     <dependency>
       <groupId>org.mockito</groupId>
