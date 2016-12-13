@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="runMeTask" class="com.mkyong.spring.scheduler.SpringRunMeTask" />
+
+    <!--
+     Spring comes with a MethodInvokingTimerTaskFactoryBean as a replacement for the JDK TimerTask. You can define your
+      target scheduler object and method to call here.
+    -->
+    <bean id="schedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="runMeTask" />
+        <property name="targetMethod" value="printMe" />
+    </bean>
+
+    <!--
+    Spring comes with a ScheduledTimerTask as a replacement for the JDK Timer. You can pass your scheduler name, delay
+     and period here.
+    -->
+    <bean id="timerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="timerTask" ref="schedulerTask" />
+        <property name="delay" value="1000" />
+        <property name="period" value="10000" />
+    </bean>
+
+    <!--
+    In last, you can configure a TimerFactoryBean bean to start your scheduler task.
+    -->
+    <bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+        <property name="scheduledTimerTasks">
+            <list>
+                <ref local="timerTask" />
+            </list>
+        </property>
+    </bean>
+
+</beans>
