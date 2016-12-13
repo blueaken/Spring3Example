@@ -3,10 +3,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="customerService" class="com.mkyong.spring.autoscancomponents.CustomerService">
+    <bean id="customerService" class="com.mkyong.spring.autoscancomponents.xml.CustomerService">
         <property name="customerDAO" ref="customerDAO" />
     </bean>
 
-    <bean id="customerDAO" class="com.mkyong.spring.autoscancomponents.CustomerDAO" />
+    <bean id="customerDAO" class="com.mkyong.spring.autoscancomponents.xml.CustomerDAO" />
 
 </beans>
