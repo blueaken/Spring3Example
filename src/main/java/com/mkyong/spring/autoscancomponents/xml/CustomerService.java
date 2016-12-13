@@ -1,14 +1,14 @@
 package com.mkyong.spring.autoscancomponents.xml;
 
-import com.mkyong.spring.autoscancomponents.xml.CustomerDAO;
-
 /**
  * Created by jianshen on 12/12/16.
  */
+
 public class CustomerService {
 
     CustomerDAO customerDAO;
 
+    //SJ: cannot be omitted here so as to make spring xml config works - can be omitted with Component annotation
     public void setCustomerDAO (CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
     }

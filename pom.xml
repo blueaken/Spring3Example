@@ -64,5 +64,12 @@
       <version>1.9.5</version>
     </dependency>
 
+    <!-- Java version of Spring @AutoWired -->
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+    </dependency>
+
   </dependencies>
 </project>
