@@ -1,5 +1,6 @@
 package com.mkyong.spring.springjdbc;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +12,8 @@ import java.sql.SQLException;
  */
 public class JDBCCustomerDAO implements CustomerDAO {
 
+    @Inject
     private DataSource dataSource;
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     public void insert(Customer customer){
 
