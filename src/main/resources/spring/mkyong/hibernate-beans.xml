@@ -3,6 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+    <!-- for spring hibernate mysql example -->
     <!-- Stock business object -->
     <bean id="stockBo" class="com.mkyong.spring.springhibernatemysql.bo.StockBoImpl" >
         <property name="stockDao" ref="stockDao" />
@@ -13,4 +14,52 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <!-- for spring aop transaction example -->
+    <!-- Product business object -->
+    <bean id="productBo" class="com.mkyong.spring.springaoptransaction.bo.ProductBoImpl" >
+        <property name="productDao" ref="productDao" />
+        <property name="productQohBo" ref="productQohBo" />
+    </bean>
+
+    <!-- Product Data Access Object -->
+    <bean id="productDao" class="com.mkyong.spring.springaoptransaction.dao.ProductDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- ProductQoh business object -->
+    <bean id="productQohBo" class="com.mkyong.spring.springaoptransaction.bo.ProductQohBoImpl" >
+        <property name="productQohDao" ref="productQohDao" />
+    </bean>
+
+    <!-- ProductQoh Data Access Object -->
+    <bean id="productQohDao" class="com.mkyong.spring.springaoptransaction.dao.ProductQohDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- AOP Transaction beans for Hibernate -->
+    <bean id="transactionInterceptor"
+          class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="save">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- AOP proxy factory bean -->
+    <bean id="productBoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="productBo" />
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
 </beans>
