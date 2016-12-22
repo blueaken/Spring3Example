@@ -104,5 +104,52 @@
       <version>5.1.40</version>
     </dependency>
 
+      <!-- spring orm -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Hibernate framework -->
+      <dependency>
+          <groupId>hibernate</groupId>
+          <artifactId>hibernate3</artifactId>
+          <version>3.2.3.GA</version>
+      </dependency>
+
+      <!-- Hibernate library dependecy start -->
+      <dependency>
+          <groupId>dom4j</groupId>
+          <artifactId>dom4j</artifactId>
+          <version>1.6.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+          <version>1.1.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+          <version>3.2.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>antlr</groupId>
+          <artifactId>antlr</artifactId>
+          <version>2.7.7</version>
+      </dependency>
+      <!-- Hibernate library dependecy end -->
+
+      <!-- Javaee API -->
+      <dependency>
+          <groupId>javax</groupId>
+          <artifactId>javaee-api</artifactId>
+          <version>6.0</version>
+      </dependency>
+
   </dependencies>
 </project>
