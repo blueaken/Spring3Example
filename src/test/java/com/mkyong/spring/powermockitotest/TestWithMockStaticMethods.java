@@ -1,5 +1,6 @@
 package com.mkyong.spring.powermockitotest;
 
+import com.springinaction.components.Knight;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,8 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -39,7 +42,7 @@ public class TestWithMockStaticMethods extends TestCase{
     }
 
     @Test
-    public void testPowerMockWithSpringJUnit4Test() {
+    public void testPowerMock_With_SpringJUnit4_And_AOP_Test() {
         PowerMockito.mockStatic(ClassWithStaticMethods.class);
         final int expectedId = 35;
 
@@ -48,5 +51,11 @@ public class TestWithMockStaticMethods extends TestCase{
 
         assertEquals(expectedId, message.getId());
         assertEquals("My bean message", message.getContent());
+
+        //add AOP test
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring_config.xml");
+        Knight knight = context.getBean(Knight.class);
+        knight.embarkOnQuest();
     }
+
 }
