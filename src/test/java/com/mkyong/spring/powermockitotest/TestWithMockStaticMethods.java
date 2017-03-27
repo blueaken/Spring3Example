@@ -1,6 +1,6 @@
 package com.mkyong.spring.powermockitotest;
 
-import com.springinaction.components.Knight;
+import com.mkyong.spring.springaopannotation.Operation;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,10 +52,12 @@ public class TestWithMockStaticMethods extends TestCase{
         assertEquals(expectedId, message.getId());
         assertEquals("My bean message", message.getContent());
 
-        //add AOP test
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring_config.xml");
-        Knight knight = context.getBean(Knight.class);
-        knight.embarkOnQuest();
+        //add AOP annotation test call
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/mkyong/spring-aop-annotation.xml");
+        Operation event = (Operation) context.getBean("opBean");
+
+        System.out.println("calling op1...");
+        event.op1();
     }
 
 }
